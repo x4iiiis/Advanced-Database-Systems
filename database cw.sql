@@ -200,7 +200,7 @@ INSERT INTO branch VALUES
 INSERT INTO branch VALUES
 (
       '365',
-      Address('Side',	'Somewhere', 'FT1 3HR'),
+      Address('Centre',	'Livingston', 'FT1 3HR'),
       '01507999222'
 
 );
@@ -755,5 +755,389 @@ INSERT INTO employee VALUES
 );
 /
 
+INSERT INTO employee VALUES
+(
+      FullName('Mrs',	'Lauren',	'King'),
+      Address('Mansefield',	'Livingston',	'EH53 0DE'),
+      'NI015',
+      '451',
+      '01506515151',
+      '07707515151', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '352'
+      ),
+      'Accountant',	
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '365'
+      ), 
+			'15-MAR-17'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Miss',	'Chelsea',	'Pittman'),
+      Address('Letham',	'Livingston',	'EH20 0FV'),
+      'NI205',
+      '801',
+      '01506200595',
+      '07763187321', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head',	
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '365'
+      ), 
+			'20-MAY-16'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Mr', 'David',	'Gray'),
+      Address('Hampden',	'Glasgow',	'EH32 7HB'),
+      'NI114',
+      '442',
+      '01411233232',
+      '07070707070', 
+      '07626262626',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head',
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'21-MAY-16'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Mr',	'Anthony',	'Stokes'),
+      Address('Easter',	'Edinburgh',	'EH32 6TH'),
+      'NI777',
+      '352',
+      '01411101010',
+      '07732076232', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '291'
+      ),
+      'Leader',	
+      '35000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'26-DEC-10'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Miss',	'Allison',	'Thomson'),
+      Address('Lodge',	'Glenrothes',	'GR08 3BD'),
+      'NI108',
+      '100',
+      '01526696969',
+      '07812666999', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head',	
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '555'
+      ), 
+			'05-OCT-14'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Mrs',	'Eleanor',	'Kay'),
+      Address('Main',	'Livingston',	'EH69 2DB'),
+      'NI180',
+      '550',
+      '01506443322',
+      '07897261900', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '352'
+      ),
+      'Accountant',	
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'19-AUG-04'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Miss',	'Sarah',	'Barbour'),
+      Address('Harrysmuir',	'Bathgate',	'BG02 9AV'),
+      'NI360',
+      '291',
+      '01572030303',
+      '07898222222', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '801'
+      ),
+      'Manager',	
+      '40000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '345'
+      ), 
+			'27-NOV-11'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Mr',	'Jason',	'Cummings'),
+      Address('Tynie',	'Edinburgh',	'LO43 7TH'),
+      'NI720',
+      '114',
+      '01010101031',
+      '07076262707', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '100'
+      ),
+      'Manager',	
+      '40000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '007'
+      ), 
+			'14-FEB-06'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Mr',	'David',	'Draiman'),
+      Address('Gig',	'Glasgow',	'BS11 3AD'),
+      'NI870',
+      '867',
+      '01411112223',
+      '07852468502', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '114'
+      ),
+      'Leader',	
+      '35000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'05-JUL-14'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Mrs',	'Karen',	'Hatton'),
+      Address('Calder',	'Livingston',	'SM66 6SD'),
+      'NI804',
+      '190',
+      '01506115523',
+      '07812748900', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '867'
+      ),
+      'Accountant',	
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '365'
+      ), 
+			'15-JUN-12'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Mr',	'Matt',	'Shadows'),
+      Address('Bat',	'Inverness',	'IV39 2EV'),
+      'NI900',
+      '290',
+      '01911118223',
+      '07773063018', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '867'
+      ),
+      'Accountant',	
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '789'
+      ), 
+			'08-MAY-16'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Mrs',	'Shanye',	'West'),
+      Address('Swag',	'Edinburgh',	'XO32 9GG'),
+      'NI881',
+      '300',
+      '01315245223',
+      '07888098900', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '998'
+      ),
+      'Manager',	
+      '40000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '666'
+      ), 
+			'07-APR-15'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Miss',	'Lzzy',	'Hale'),
+      Address('Storm',	'Dundee',	'HA13 5TO'),
+      'NI274',
+      '998',
+      '01611971223',
+      '07812095901', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head',
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '456'
+      ), 
+			'06-MAR-13'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Mr',	'Yer',	'Da'),
+      Address('Patter',	'Perth',	'YD12 3PP'),
+      'NI753',
+      '777',
+      '01711150223',
+      '07812069904', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '867'
+      ),
+      'Accountant',	
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '888'
+      ), 
+			'03-JAN-10'
+);
+/
+INSERT INTO employee VALUES 
+(
+      FullName('Miss',	'Ruth',	'Davidson'),
+      Address('Lemon',	'Wishaw',	'LI42 4WM'),
+      'NI765',
+      '118',
+      '01311112229',
+      '07812098927', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '300'
+      ),
+      'Leader',
+      '35000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '245'
+      ), 
+			'06-FEB-14'
+);
+/
+INSERT INTO employee VALUES
+(
+      FullName('Mr', 'Sean',	'Baxter'),
+      Address('McDonald',	'Glasgow',	'EH32 7SB'),
+      'NI224',
+      '582',
+      '01411582582',
+      '07582585858', 
+      '07626582626',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head',
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'23-MAY-16'
+);
+/
 
 
