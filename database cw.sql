@@ -125,7 +125,7 @@ CREATE TYPE account_type AS OBJECT
 (
   AccNum VARCHAR2(4),
   accType VARCHAR(10),
-  balance VARCHAR2(6),
+  balance VARCHAR2(9),
   bID REF branch_type,
   inRate FLOAT(6),
   limitOfFreeOD VARCHAR2(3),
@@ -140,7 +140,6 @@ CREATE TABLE bankaccount OF account_type
     CONSTRAINT accType_const CHECK(accType IN ('Savings', 'Current')),
     CONSTRAINT balance_const CHECK(balance IS NOT NULL),
     CONSTRAINT inRate_const CHECK(inRate IS NOT NULL),
-    CONSTRAINT OD_const CHECK(limitOfFreeOD IS NOT NULL),
     CONSTRAINT openDate_const CHECK(openDate IS NOT NULL)
 );
 /
@@ -335,4 +334,324 @@ INSERT INTO branch VALUES
 );
 /
 
---a
+--account
+INSERT INTO bankaccount VALUES
+(
+      '1001',
+      'Current',
+      '820.50',
+      (
+          SELECT REF(b) 
+          FROM branch b
+          WHERE b.bID = '901'
+      ),
+      '0.005',
+      '800',
+      '01-MAY-11'
+);
+/
+	
+INSERT INTO bankaccount VALUES
+(
+      '1010',
+      'Savings',
+      '3122.20',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '901'
+      ),
+      '0.02',
+      '',
+      '08-MAR-10'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '8002',
+      'Current',
+      '200',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '908'
+      ),
+      '0.005',
+      '100',
+      '05-MAY-09'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '1902',
+      'Current',
+      '7062.32',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '007'
+      ),
+      '0.32',
+      '114',
+      '21-MAY-16'
+);
+/
+
+INSERT INTO bankaccount VALUES 
+(
+      '1875',
+      'Savings',
+      '8.20',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '543'
+      ),
+      '0.002',
+      '',
+      '07-FEB-11'
+);
+/
+
+INSERT INTO bankaccount VALUES 
+(
+      '3232',
+      'Current',
+      '4000.00',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '345'
+      ),
+      '0.12',
+      '',
+      '18-JUL-13'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '0762',
+      'Savings',
+      '598267.35',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '365'
+      ),
+      '0.04',
+      '',
+      '07-SEP-06'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '0114',
+      'Current',
+      '7062.51',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '007'
+      ),
+      '0.05',
+      '999',
+      '25-JAN-12'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '3333',
+      'Current',
+      '180.92',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '321'
+      ),
+      '0.20',
+      '50',
+      '12-APR-15'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '4444',
+      'Savings',
+      '332.28',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '456'
+      ),
+      '0.01',
+      '',
+      '28-FEB-09'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '5555',
+      'Current',
+      '95.80',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '789'
+      ),
+      '0.023',
+      '',
+      '16-AUG-16'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '6666',
+      'Current',
+      '450.71',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '999'
+      ),
+      '0.029',
+      '90',
+      '08-MAR-05'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '8774',
+      'Savings',
+      '5001.67',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '245'
+      ),
+      '0.198',
+      '',
+      '08-NOV-10'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '4566',
+      'Current',
+      '110.00',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '696'
+      ),
+      '0.003',
+      '',
+      '09-JUN-14'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '1223',
+      'Savings',
+      '9998.98',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '969'
+      ),
+      '0.1',
+      '',
+      '03-JAN-95'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '1114',
+      'Savings',
+      '976.52',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '555'
+      ),
+      '0.022',
+      '',
+      '06-APR-13'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '9864',
+      'Savings',
+      '3124.66',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '233'
+      ),
+      '0.045',
+      '',
+      '08-OCT-10'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '9871',
+      'Current',
+      '666.99',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '888'
+      ),
+      '0.045',
+      '80',
+      '18-SEP-14'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '1357',
+      'Current',
+      '69.96',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '159'
+      ),
+      '0.001',
+      '',
+      '01-OCT-11'
+);
+/
+
+INSERT INTO bankaccount VALUES
+(
+      '2468',
+      'Savings',
+      '3122.89',
+      (
+          SELECT REF(b)
+          FROM branch b
+          WHERE b.bID = '500'
+      ),
+      '0.049',
+      '',
+      '26-DEC-07'
+);
+/
+
