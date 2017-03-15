@@ -82,7 +82,7 @@ CREATE TABLE employee OF employee_type
     
     CONSTRAINT empStreet_const CHECK(pAddy.street IS NOT NULL),
     CONSTRAINT empCity_const CHECK(pAddy.city IS NOT NULL),
-    CONSTRAINT empPostCode_const CHECK(pAddy.postcode IS NOT NULL),
+    CONSTRAINT empPostCode_const CHECK(pAddy.postCode IS NOT NULL),
     CONSTRAINT empTitle_const CHECK(pName.title IN ('Mr', 'Mrs', 'Ms', 'Miss', 'Dr')),
     CONSTRAINT empFirstName_const CHECK(pName.firstname IS NOT NULL),
     CONSTRAINT empSurName_const CHECK(pName.surname IS NOT NULL),
@@ -90,9 +90,9 @@ CREATE TABLE employee OF employee_type
     CONSTRAINT empHomePhone_const CHECK(empHomePhone IS NOT NULL),
     CONSTRAINT empMobile1_const CHECK(empMobile1 IS NOT NULL),
     CONSTRAINT empSupervisor_const CHECK(supervisorID IS NOT NULL),
-    CONSTRAINT empPosition_const CHECK (position IN ('Head', 'Manager', 'Accountant', 'Leader')),
-    CONSTRAINT empSalary_const CHECK(salary IS NOT NULL),
-    CONSTRAINT empJoinDate_const CHECK(joinDate IS NOT NULL)     
+    CONSTRAINT empPosition_const CHECK (position.position IN ('Head', 'Manager', 'Leader', 'Accountant', 'Cashier')),
+    CONSTRAINT empSalary_const CHECK(position.salary IS NOT NULL),
+    CONSTRAINT empJoinDate_const CHECK(position.joinDate IS NOT NULL)     
 );
 /
 
