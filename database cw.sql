@@ -46,9 +46,9 @@ NOT FINAL;
 
 CREATE TYPE branch_type AS OBJECT
 (
-  bID NUMBER(4),
+  bID VARCHAR2(4),
   bAddy Address,
-  bPhone NUMBER(11)
+  bPhone VARCHAR2(11)
 );
 /
 CREATE TABLE branch of branch_type
@@ -64,13 +64,13 @@ CREATE TABLE branch of branch_type
 
 CREATE TYPE employee_type UNDER Person
 (
-  empID NUMBER(3),
-  empHomePhone NUMBER(11),
-  empMobile1 NUMBER(11),
-  empMobile2 NUMBER(11),
-  supervisorID NUMBER(3),
+  empID VARCHAR2(3),
+  empHomePhone VARCHAR2(11),
+  empMobile1 VARCHAR2(11),
+  empMobile2 VARCHAR2(11),
+  supervisorID VARCHAR2(3),
   position VARCHAR(20),
-  salary NUMBER(6),
+  salary VARCHAR2(6),
   bID REF branch_type,
   joinDate DATE
 );
@@ -98,10 +98,10 @@ CREATE TABLE employee OF employee_type
 
 CREATE TYPE customer_type UNDER Person
 (
-  custID NUMBER(4),
-  custHomePhone NUMBER(11),
-  custMobile1 NUMBER(11),
-  custMobile2 NUMBER(11)
+  custID VARCHAR2(4),
+  custHomePhone VARCHAR2(11),
+  custMobile1 VARCHAR2(11),
+  custMobile2 VARCHAR2(11)
 );
 /
 CREATE TABLE customer OF customer_type
@@ -123,16 +123,16 @@ CREATE TABLE customer OF customer_type
 
 CREATE TYPE account_type AS OBJECT
 (
-  AccNum NUMBER(4),
+  AccNum VARCHAR2(4),
   accType VARCHAR(10),
-  balance NUMBER(6),
+  balance VARCHAR2(6),
   bID REF branch_type,
   inRate FLOAT(6),
-  limitOfFreeOD NUMBER(3),
+  limitOfFreeOD VARCHAR2(3),
   openDate DATE
 );
 /
-CREATE TABLE BankAccount OF account_type
+CREATE TABLE bankaccount OF account_type
 (
     PRIMARY KEY(AccNum),
     FOREIGN KEY(bID) REFERENCES branch,
@@ -157,4 +157,182 @@ CREATE TABLE customer_account OF customer_account_type;
 
 
 
---Data insertion
+--------------------Data insertion
+--Branch
+INSERT INTO branch VALUES
+(
+      '901',
+      Address('Market', 'Edinburgh', 'EH1 5AB'),
+      '01311235560'
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '908',
+      Address('Bridge', 'Glasgow', 'G18 1QQ'),
+      '01413214556'
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '666',
+      Address('Collinton',	'Edinburgh',	'EH6 9HE'),	
+      '01506884072'
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '543',	
+      Address('Morningside',	'Edinburgh',	'AS7 7HY'),
+      '01506888999'
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '345',	
+      Address('Main',	'Bathgate',	'AR3 6YH'),
+      '01508992192'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '365',
+      Address('Side',	'Somewhere', 'FT1 3HR'),
+      '01507999222'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '007',	
+      Address('Leith Walk',	'Edinburgh',	'HB3 2RG'),
+      '01311902323'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '321',
+      Address('Bank',	'Aberdeen',	'JJ4 3IJ'),
+      '01503888777'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '456',
+      Address('Down',	'Dundee',	'JH4 3HA'),
+      '01592888723'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '789',
+      Address('North',	'Inverness',	'KK2 8KJ'),
+      '01567898989'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '999',
+      Address('Twist',	'Motherwell',	'YD5 3WH'),
+      '01234567890'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '245',
+      Address('Main',	'Wishaw',	'CJ4 7DT'),
+      '09876543210'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '696',
+      Address('Love',	'Paisley',	'KS5 6JH'),
+      '09876789876'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '969',
+      Address('Raith',	'Kirkaldy',	'YL1 9TT'),
+      '09453268975'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '555',
+      Address('Zoo Lane',	'Glenrothes',	'HT5 1KK'),
+      '09834567876'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '233',
+      Address('Knock',	'Kelty',	'HT4 5GG'),
+      '06543878765'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '888',	
+      Address('Saint',	'Perth',	'EH5 3OD'),
+      '01234987654'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '159',
+      Address('Griffith',	'Kilmarnock',	'JK4 JK5'),
+      '01522333444'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '500',
+      Address('Pittencrief',	'Dunfermline',	'HG5 9KS'),
+      '01234666666'
+
+);
+/
+
+INSERT INTO branch VALUES
+(
+      '117',
+      Address('Sierra',	'Edinburgh',	'HER 5AJ'),
+      '01666999666'
+
+);
+/
+
+--a
