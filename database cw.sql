@@ -68,7 +68,8 @@ CREATE TYPE employee_type UNDER Person
   empHomePhone VARCHAR2(11),
   empMobile1 VARCHAR2(11),
   empMobile2 VARCHAR2(11),
-  supervisorID VARCHAR2(3),
+  --supervisorID VARCHAR2(3),
+  supervisorID REF employee_type,
   position VARCHAR(20),
   salary VARCHAR2(6),
   bID REF branch_type,
@@ -88,8 +89,6 @@ CREATE TABLE employee OF employee_type
     CONSTRAINT empSurName_const CHECK(pName.surname IS NOT NULL),
     CONSTRAINT empNiNum_const UNIQUE(niNum),
     CONSTRAINT empHomePhone_const CHECK(empHomePhone IS NOT NULL),
-    CONSTRAINT empMobile1_const CHECK(empMobile1 IS NOT NULL),
-    CONSTRAINT empSupervisor_const CHECK(supervisorID IS NOT NULL),
     CONSTRAINT empPosition_const CHECK (position IN ('Head', 'Manager', 'Accountant', 'Leader')),
     CONSTRAINT empSalary_const CHECK(salary IS NOT NULL),
     CONSTRAINT empJoinDate_const CHECK(joinDate IS NOT NULL)     
@@ -116,7 +115,6 @@ CREATE TABLE customer OF customer_type
     CONSTRAINT custSurName_const CHECK(pName.surname IS NOT NULL),
     CONSTRAINT custNiNum_const UNIQUE(niNum),
     CONSTRAINT custHomePhone_const CHECK(custHomePhone IS NOT NULL),
-    CONSTRAINT custMobile1_const CHECK(custMobile1 IS NOT NULL)
 );
 /
 
@@ -654,4 +652,108 @@ INSERT INTO bankaccount VALUES
       '26-DEC-07'
 );
 /
+
+
+--Employee
+INSERT INTO employee VALUES
+(
+      FullName('Mrs', 'Alison', 'Smith'),
+      Address('Dart', 'Edinburgh', 'EH10 5TT'),
+      'NI001',
+      '101',
+      '01312125555',
+      '07705623443', 
+      '07907812345',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = ''
+      ),
+      'Head', 
+      '50000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '901'
+      ), 
+			'01-FEB-08'
+);
+/
+
+INSERT INTO employee VALUES 
+(
+      FullName('Mr', 'John', 'William'),
+      Address('New', 'Edinburgh', 'EH24AB'),
+      'NI010',
+      '105',
+      '01312031990',
+      '07902314551', 
+      '07701234567',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '101'
+      ),
+      'Manager', 
+      '40000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '901'
+      ), 
+			'04-MAR-09'
+);
+/
+
+INSERT INTO employee VALUES
+(
+      FullName('Mr', 'Mark', 'Slack'),
+      Address('Old', 'Edinburgh', 'EH94BB'),
+      'NI120',
+      '108',
+      '01312102211',
+      '', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '105'
+      ),
+      'Accountant', 
+      '30000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '901'
+      ), 
+			'01-FEB-12'
+);
+/
+
+INSERT INTO employee VALUES
+(
+      FullName('Mr', 'Jack', 'Smith'),
+      Address('Dart', 'Edinburgh', 'EH16EA'),
+      'NI810',
+      '804',
+      '01311112223',
+      '07812098900', 
+      '',
+      (
+            SELECT REF(e)
+            FROM employee e
+            WHERE e.empID = '801'
+      ),
+      'Leader', 
+      '35000',
+      (
+            SELECT REF(b)
+						FROM branch b
+						WHERE b.bID = '908'
+      ), 
+			'05-FEB-14'
+);
+/
+
+
 
