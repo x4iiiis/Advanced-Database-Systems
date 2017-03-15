@@ -779,6 +779,7 @@ INSERT INTO employee VALUES
 			'15-MAR-17'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Miss',	'Chelsea',	'Pittman'),
@@ -798,11 +799,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '365'
+						WHERE b.bID = '908'
       ), 
 			'20-MAY-16'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Mr', 'David',	'Gray'),
@@ -827,6 +829,7 @@ INSERT INTO employee VALUES
 			'21-MAY-16'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Mr',	'Anthony',	'Stokes'),
@@ -846,11 +849,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '908'
+						WHERE b.bID = '365'
       ), 
 			'26-DEC-10'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Miss',	'Allison',	'Thomson'),
@@ -870,11 +874,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '555'
+						WHERE b.bID = '007'
       ), 
 			'05-OCT-14'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Mrs',	'Eleanor',	'Kay'),
@@ -894,11 +899,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '908'
+						WHERE b.bID = '365'
       ), 
 			'19-AUG-04'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Miss',	'Sarah',	'Barbour'),
@@ -911,18 +917,19 @@ INSERT INTO employee VALUES
       (
             SELECT REF(e)
             FROM employee e
-            WHERE e.empID = '801'
+            WHERE e.empID = '998'
       ),
       'Manager',	
       '40000',
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '345'
+						WHERE b.bID = '365'
       ), 
 			'27-NOV-11'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Mr',	'Jason',	'Cummings'),
@@ -947,6 +954,7 @@ INSERT INTO employee VALUES
 			'14-FEB-06'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Mr',	'David',	'Draiman'),
@@ -966,11 +974,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '908'
+						WHERE b.bID = '007'
       ), 
 			'05-JUL-14'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Mrs',	'Karen',	'Hatton'),
@@ -990,11 +999,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '365'
+						WHERE b.bID = '007'
       ), 
 			'15-JUN-12'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Mr',	'Matt',	'Shadows'),
@@ -1007,18 +1017,19 @@ INSERT INTO employee VALUES
       (
             SELECT REF(e)
             FROM employee e
-            WHERE e.empID = '867'
+            WHERE e.empID = '998'
       ),
       'Accountant',	
       '30000',
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '789'
+						WHERE b.bID = '321'
       ), 
 			'08-MAY-16'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Mrs',	'Shanye',	'West'),
@@ -1031,18 +1042,19 @@ INSERT INTO employee VALUES
       (
             SELECT REF(e)
             FROM employee e
-            WHERE e.empID = '998'
+            WHERE e.empID = '100'
       ),
       'Manager',	
       '40000',
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '666'
+						WHERE b.bID = '007'
       ), 
 			'07-APR-15'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Miss',	'Lzzy',	'Hale'),
@@ -1062,11 +1074,12 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '456'
+						WHERE b.bID = '321'
       ), 
 			'06-MAR-13'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Mr',	'Yer',	'Da'),
@@ -1079,7 +1092,7 @@ INSERT INTO employee VALUES
       (
             SELECT REF(e)
             FROM employee e
-            WHERE e.empID = '867'
+            WHERE e.empID = '118'
       ),
       'Accountant',	
       '30000',
@@ -1091,6 +1104,7 @@ INSERT INTO employee VALUES
 			'03-JAN-10'
 );
 /
+
 INSERT INTO employee VALUES 
 (
       FullName('Miss',	'Ruth',	'Davidson'),
@@ -1103,22 +1117,23 @@ INSERT INTO employee VALUES
       (
             SELECT REF(e)
             FROM employee e
-            WHERE e.empID = '300'
+            WHERE e.empID = '582'
       ),
       'Leader',
       '35000',
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '245'
+						WHERE b.bID = '888'
       ), 
 			'06-FEB-14'
 );
 /
+
 INSERT INTO employee VALUES
 (
       FullName('Mr', 'Sean',	'Baxter'),
-      Address('McDonald',	'Glasgow',	'EH32 7SB'),
+      Address('McDonald',	'Perth',	'EH32 7SB'),
       'NI224',
       '582',
       '01411582582',
@@ -1134,7 +1149,7 @@ INSERT INTO employee VALUES
       (
             SELECT REF(b)
 						FROM branch b
-						WHERE b.bID = '908'
+						WHERE b.bID = '888'
       ), 
 			'23-MAY-16'
 );
