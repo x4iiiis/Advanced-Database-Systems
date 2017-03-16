@@ -1396,4 +1396,319 @@ INSERT INTO customer VALUES
 );	
 /
 
+--Customer Account
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1002'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1001'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1002'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1010'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1003'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1010'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1098'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '8002'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1013'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1902'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '0147'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1875'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '0210'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '3232'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '6070'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '0762'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '6207'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '0114'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1147'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '3333'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '3020'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '4444'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES 
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '0910'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '5555'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1110'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '6666'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '6262'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '8774'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1000'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '4566'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '3040'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1223'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '3030'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1114'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '3004'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '9864'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '1312'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '9871'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '0001'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '1357'
+  )
+);
+/
+
+INSERT INTO customer_account VALUES
+(
+  (
+    SELECT REF(c)
+    FROM customer c
+    WHERE c.custID = '8888'
+  ),
+  (
+    SELECT REF(ba)
+    FROM bankaccount ba
+    WHERE ba.accNum = '2468'
+  )
+);
+/
 
