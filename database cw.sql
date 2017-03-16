@@ -1739,18 +1739,20 @@ WHERE ba.accType LIKE 'Savings'
 GROUP BY ba.bID.bAddy.street, ba.bID.bAddy.city, ba.bID.bAddy.postcode;
 
 
---c)
+--c) without OD
 COLUMN custID.pName.title HEADING 'Title'
 COLUMN custID.pName.firstname HEADING 'First Name'
 COLUMN custID.pName.surname HEADING 'Surname'
-COLUMN custID.custID HEADING 'Customer ID'
-COLUMN accNum.accNum HEADING 'Account ID'
 COLUMN MAX(ca.accNum.balance) HEADING 'Balance'
 COLUMN accNum.bID.bID HEADING 'Branch ID'
 
-SELECT ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, ca.custID.custID, ca.accNum.accNum, MAX(ca.accNum.balance), ca.accNum.bID.bID  
+SELECT ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, MAX(ca.accNum.balance), ca.accNum.bID.bID  
 FROM customer_account ca
 WHERE ca.accNum.accType LIKE 'Savings'
-GROUP BY ca.accNum.accNum, ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, ca.custID.custID,  ca.accNum.bID.bID;
+GROUP BY ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, ca.accNum.bID.bID;
 
 
+--d)
+SELECT e.position.bID.bAddy.street, e.position.bID.bAddy.city, e.position.bID.bAddy.postcode
+FROM employee e, branch b
+WHERE e.supervisorID.position.position LIKE 'Manager' AND e.niNum IN (SELECT c.niNum FROM customer c WHERE c.niNum LIKE e.niNum)
