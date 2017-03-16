@@ -114,7 +114,7 @@ CREATE TABLE customer OF customer_type
     CONSTRAINT custFirstName_const CHECK(pName.firstname IS NOT NULL),
     CONSTRAINT custSurName_const CHECK(pName.surname IS NOT NULL),
     CONSTRAINT custNiNum_const UNIQUE(niNum),
-    CONSTRAINT custHomePhone_const CHECK(custHomePhone IS NOT NULL),
+    CONSTRAINT custHomePhone_const CHECK(custHomePhone IS NOT NULL)
 );
 /
 
@@ -424,7 +424,7 @@ INSERT INTO bankaccount VALUES
           WHERE b.bID = '345'
       ),
       '0.12',
-      '',
+      '200',
       '18-JUL-13'
 );
 /
@@ -504,7 +504,7 @@ INSERT INTO bankaccount VALUES
           WHERE b.bID = '789'
       ),
       '0.023',
-      '',
+      '50',
       '16-AUG-16'
 );
 /
@@ -552,7 +552,7 @@ INSERT INTO bankaccount VALUES
           WHERE b.bID = '696'
       ),
       '0.003',
-      '',
+      '50',
       '09-JUN-14'
 );
 /
@@ -632,7 +632,7 @@ INSERT INTO bankaccount VALUES
           WHERE b.bID = '159'
       ),
       '0.001',
-      '',
+      '50',
       '01-OCT-11'
 );
 /
@@ -1153,6 +1153,247 @@ INSERT INTO employee VALUES
       ), 
 			'23-MAY-16'
 );
+/
+
+--Customer
+INSERT INTO customer VALUES
+(
+      FullName('Mr', 'Jack', 'Smith'),
+      Address('Adam', 'Edinburgh', 'EH1 6EA'),
+      'NI810',
+      '1002',
+      '01311112223',
+      '0781209890', 
+      '0770234567'
+  );
+/
+
+INSERT INTO customer VALUES
+(
+      FullName('Ms', 'Anna', 'Smith'),
+      Address('Adam', 'Edinburgh', 'EH1 6EA'),
+      'NI310',
+      '1003',
+      '01311112223',
+      '0770111222',
+      ''
+);
+/
+
+INSERT INTO customer VALUES
+(
+      FullName('Mr', 'Liam', 'Bain'),
+	    Address('New', 'Edinburgh', 'EH2 8XN'),
+      'NI034',
+      '1098',
+      '01314425567',
+      '',
+      ''
+);
+/
+
+INSERT INTO customer VALUES 
+(
+      FullName('Mr', 'Ronnie', 'Pickering'),
+      Address('Roadrage', 'Edinburgh', 'ED11 6RR'),
+      'NI235',
+      '1013',
+      '01314513204', 
+      '0781205134',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(			
+      FullName('Mr',	'Judd',	'Trump'),
+      Address('Table',	'Edinburgh',	'EH14 7JT'),
+      'NI741',
+      '0147',
+      '01311471471', 
+      '07702011616',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(	 				
+      FullName('Miss',	'Amy',	'Thomson'),
+      Address('Dug',	'Edinburgh',	'EH21 0EW'),
+      'NI210',
+      '0210',
+      '01310210210', 
+      '07701656716',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mrs',	'Avril',	'Lavigne'),
+      Address('Skater',	'Glasgow',	'HH23 3YY'),
+      'NI838',
+      '6070',
+      '01410838383', 
+      '07896101010',
+      '07090909078'
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mr',	'Derek',	'Riordan'),
+      Address('Deek',	'Edinburgh',	'DO07 4TH'),
+      'NI033',
+      '6207',
+      '01317776262', 
+      '07777777777',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(					
+      FullName('Mr',	'Ronnie',	'OSullivan'),
+      Address('Century',	'Edinburgh',	'EH14 7RO'),
+      'NI147',
+      '1147',
+      '01310100147', 
+      '07147147147',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Miss',	'Ava',	'Barbour'),
+      Address('Station',	'Bathgate',	'BG03 4VA'),
+      'NI434',
+      '3020',
+      '01516884932', 
+      '',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Miss',	'Joanna',	'Robertson'),
+      Address('Maxi',	'Livingston',	'EH53 9OT'),
+      'NI910',
+      '0910',
+      '01506884072', 
+      '07702011616',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mrs',	'Helen',	'Wilson'),
+      Address('Nurse',	'Aberdeen',	'AB53 7HB'),
+      'NI333',
+      '1110',
+      '01904886343', 
+      '07762999999',
+      '07911911911'
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mr',	'Mixu',	'Paatelainen'),
+      Address('Traing',	'Dundee',	'WT10 0FP'),
+      'NI062',
+      '6262',
+      '01880626266', 
+      '07626200762',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Miss',	'Mei',	'Ling'),
+      Address('Metal',	'Inverness',	'IV04 4MG'),
+      'NI111',
+      '1000',
+      '09901010101', 
+      '07701212121',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mr',	'Dennis',	'Bergkamp'),
+      Address('Spin',	'Motherwell',	'MW08 6KB'),
+      'NI044',
+      '3040',
+      '01566060606', 
+      '07789721567',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mr',	'John', 'McGinn'),
+      Address('Super',	'Paisley',	'WG30 3JM'),
+      'NI579',
+      '3030',
+      '01333777864', 
+      '07792303030',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES 
+(						
+      FullName('Mr',	'Thierry',	'Henry'),
+      Address('Boss',	'Glenrothes',	'GR14 1TH'),
+      'NI818',
+      '3004',
+      '08655876255', 
+      '07703040304',
+      '07777343434'
+);	
+/
+
+INSERT INTO customer VALUES
+(						
+      FullName('Mr',	'Franck',	'Sauzee'),
+      Address('God',	'Perth',	'LG05 1FS'),
+      'NI136',
+      '1312',
+      '01756334443', 
+      '07705776622',
+      ''
+);	
+/
+
+INSERT INTO customer VALUES 
+(						
+      FullName('Ms',	'Blair',	'Waldorf'),
+      Address('Queen',	'Kilmarnock',	'QB01 1WD'),
+      'NI001',
+      '0001',
+      '01234567890', 
+      '07701010101',
+      '07101010101'
+);	
+/
+
+INSERT INTO customer VALUES 
+(					
+      FullName('Mr',	'Neil',	'Robertson'),
+      Address('Skippy',	'Dunfermline',	'DF12 3AU'),
+      'NI080',
+      '8888',
+      '01237889256', 
+      '07799778855',
+      ''
+);	
 /
 
 
