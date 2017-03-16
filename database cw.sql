@@ -1810,3 +1810,11 @@ COLUMN accNum.bID.bAddy.postcode HEADING 'Account Postcode'
 SELECT e.bID.bAddy.street, e.bID.bAddy.city, e.bID.bAddy.postcode, ca.accNum.bID.bAddy.street, ca.accNum.bID.bAddy.city, ca.accNum.bID.bAddy.postcode
 FROM employee e, customer_account ca
 WHERE ca.custID.niNum = e.niNum AND e.supervisorID.position LIKE 'Manager';
+
+
+--e)
+--SELECT ca.custID.bID.bID, ca.accNum.pName.title, ca.accNum.pName.firstname, ca.accNum.pName.surname, MAX(ca.custID.limitOfFreeOD)
+--WHERE 
+
+
+--f)
