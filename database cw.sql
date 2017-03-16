@@ -9,7 +9,6 @@ drop type customer_type;
 drop type employee_type;
 drop type account_type;
 drop type branch_type;
-drop type employee;
 drop type person;
 drop type FullName;
 drop type Address;
@@ -353,7 +352,7 @@ INSERT INTO bankaccount VALUES
 (
       '1010',
       'Savings',
-      '3122.20',
+      '7122.29',
       (
           SELECT REF(b)
           FROM branch b
@@ -807,7 +806,7 @@ INSERT INTO employee VALUES
 
 INSERT INTO employee VALUES
 (
-      FullName('Mr', 'David',	'Gray'),
+      FullName('Mr', 'Anthony',	'Stokes'),
       Address('Hampden',	'Glasgow',	'EH32 7HB'),
       'NI114',
       '442',
@@ -832,7 +831,7 @@ INSERT INTO employee VALUES
 
 INSERT INTO employee VALUES
 (
-      FullName('Mr',	'Anthony',	'Stokes'),
+      FullName('Mr',	'David',	'Gray'),
       Address('Easter',	'Edinburgh',	'EH32 6TH'),
       'NI777',
       '352',
@@ -957,8 +956,8 @@ INSERT INTO employee VALUES
 
 INSERT INTO employee VALUES 
 (
-      FullName('Mr',	'David',	'Draiman'),
-      Address('Gig',	'Glasgow',	'BS11 3AD'),
+      FullName('Mr',	'Jon',	'Kerridge'),
+      Address('Fun',	'Glasgow',	'BS11 3AD'),
       'NI870',
       '867',
       '01411112223',
@@ -1711,4 +1710,47 @@ INSERT INTO customer_account VALUES
   )
 );
 /
+
+
+
+
+
+
+---------------------------------------------Query space-----------------
+--a)
+COLUMN pName.firstname HEADING 'First Name'
+COLUMN pName.surname HEADING 'Surname'
+
+SELECT e.pName.firstname, e.pName.surname
+FROM employee e
+WHERE e.pAddy.city LIKE 'Glasgow' AND e.pName.firstname LIKE '%on%';
+
+
+--b)
+COLUMN COUNT(ba.accType) HEADING 'Amount of Savings Accounts'
+COLUMN bID.bAddy.street HEADING 'Street'
+COLUMN bID.bAddy.city HEADING 'City'
+COLUMN bID.bAddy.postcode HEADING 'Postcode'
+
+SELECT COUNT
+(ba.accType), ba.bID.bAddy.street, ba.bID.bAddy.city, ba.bID.bAddy.postcode
+FROM BankAccount ba
+WHERE ba.accType LIKE 'Savings'
+GROUP BY ba.bID.bAddy.street, ba.bID.bAddy.city, ba.bID.bAddy.postcode;
+
+
+--c)
+COLUMN custID.pName.title HEADING 'Title'
+COLUMN custID.pName.firstname HEADING 'First Name'
+COLUMN custID.pName.surname HEADING 'Surname'
+COLUMN custID.custID HEADING 'Customer ID'
+COLUMN accNum.accNum HEADING 'Account ID'
+COLUMN MAX(ca.accNum.balance) HEADING 'Balance'
+COLUMN accNum.bID.bID HEADING 'Branch ID'
+
+SELECT ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, ca.custID.custID, ca.accNum.accNum, MAX(ca.accNum.balance), ca.accNum.bID.bID  
+FROM customer_account ca
+WHERE ca.accNum.accType LIKE 'Savings'
+GROUP BY ca.accNum.accNum, ca.custID.pName.title, ca.custID.pName.firstname, ca.custID.pName.surname, ca.custID.custID,  ca.accNum.bID.bID;
+
 
