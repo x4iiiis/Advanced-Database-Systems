@@ -12,6 +12,8 @@ drop type branch_type;
 drop type person;
 drop type FullName;
 drop type Address;
+drop type ContactDetails;
+drop type NestedMobiles;
 
 
 
@@ -34,10 +36,23 @@ CREATE TYPE Address AS OBJECT
 NOT FINAL;
 /
 
+CREATE TYPE NestedMobiles AS TABLE OF VARCHAR2(11);
+/
+
+CREATE TYPE ContactDetails AS OBJECT
+(
+  homeNumber VARCHAR(11),
+  mobileNumbers NestedMobiles
+)
+NOT FINAL;
+/
+
+
 CREATE TYPE Person AS OBJECT
 (
   pName FullName,
   pAddy Address,
+  pContact ContactDetails,
   niNum VARCHAR2(5)
 )
 NOT FINAL;
@@ -64,10 +79,6 @@ CREATE TABLE branch of branch_type
 CREATE TYPE employee_type UNDER Person
 (
   empID VARCHAR2(3),
-  empHomePhone VARCHAR2(11),
-  empMobile1 VARCHAR2(11),
-  empMobile2 VARCHAR2(11),
-  --supervisorID VARCHAR2(3),
   supervisorID REF employee_type,
   position VARCHAR(20),
   salary VARCHAR2(6),
@@ -87,19 +98,15 @@ CREATE TABLE employee OF employee_type
     CONSTRAINT empFirstName_const CHECK(pName.firstname IS NOT NULL),
     CONSTRAINT empSurName_const CHECK(pName.surname IS NOT NULL),
     CONSTRAINT empNiNum_const UNIQUE(niNum),
-    CONSTRAINT empHomePhone_const CHECK(empHomePhone IS NOT NULL),
     CONSTRAINT empPosition_const CHECK (position IN ('Head', 'Manager', 'Accountant', 'Leader')),
     CONSTRAINT empSalary_const CHECK(salary IS NOT NULL),
-    CONSTRAINT empJoinDate_const CHECK(joinDate IS NOT NULL)     
-);
+    CONSTRAINT empJoinDate_const CHECK(joinDate IS NOT NULL))
+    NESTED TABLE pContact.mobileNumbers STORE AS empMobiles;
 /
 
 CREATE TYPE customer_type UNDER Person
 (
-  custID VARCHAR2(4),
-  custHomePhone VARCHAR2(11),
-  custMobile1 VARCHAR2(11),
-  custMobile2 VARCHAR2(11)
+  custID VARCHAR2(4)
 );
 /
 CREATE TABLE customer OF customer_type
@@ -112,9 +119,8 @@ CREATE TABLE customer OF customer_type
     CONSTRAINT custTitle_const CHECK(pName.title IS NOT NULL),
     CONSTRAINT custFirstName_const CHECK(pName.firstname IS NOT NULL),
     CONSTRAINT custSurName_const CHECK(pName.surname IS NOT NULL),
-    CONSTRAINT custNiNum_const UNIQUE(niNum),
-    CONSTRAINT custHomePhone_const CHECK(custHomePhone IS NOT NULL)
-);
+    CONSTRAINT custNiNum_const UNIQUE(niNum))
+    NESTED TABLE pContact.mobileNumbers STORE AS custMobiles;
 /
 
 
@@ -674,11 +680,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mrs', 'Alison', 'Smith'),
       Address('Dart', 'Edinburgh', 'EH10 5TT'),
+      ContactDetails('01312125555', NestedMobiles('07705623443', '07907812345')),
       'NI001',
       '101',
-      '01312125555',
-      '07705623443', 
-      '07907812345',
       (
             SELECT REF(e)
             FROM employee e
@@ -699,11 +703,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr', 'John', 'William'),
       Address('New', 'Edinburgh', 'EH24AB'),
+      ContactDetails('01312031990', NestedMobiles('07902314551','07701234567')),
       'NI010',
       '105',
-      '01312031990',
-      '07902314551', 
-      '07701234567',
       (
             SELECT REF(e)
             FROM employee e
@@ -726,11 +728,9 @@ INSERT INTO employee VALUES
 (
       FullName('Miss',	'Chelsea',	'Pittman'),
       Address('Letham',	'Livingston',	'EH20 0FV'),
+      ContactDetails('01506200595', NestedMobiles('07763187321', '')),
       'NI205',
       '801',
-      '01506200595',
-      '07763187321', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -751,11 +751,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr', 'Anthony',	'Stokes'),
       Address('Hampden',	'Glasgow',	'EH32 7HB'),
+      ContactDetails('01411233232', NestedMobiles('07070707070')),
       'NI114',
       '442',
-      '01411233232',
-      '07070707070', 
-      '07626262626',
       (
             SELECT REF(e)
             FROM employee e
@@ -777,11 +775,9 @@ INSERT INTO employee VALUES
 (
       FullName('Miss',	'Allison',	'Thomson'),
       Address('Lodge',	'Glenrothes',	'GR08 3BD'),
+      ContactDetails('01526696969', NestedMobiles('07812666999', '')),
       'NI108',
       '100',
-      '01526696969',
-      '07812666999', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -802,11 +798,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr',	'Jason',	'Cummings'),
       Address('Tynie',	'Edinburgh',	'LO43 7TH'),
+      ContactDetails('01010101031', NestedMobiles('07076262707', '')),
       'NI720',
       '114',
-      '01010101031',
-      '07076262707', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -827,11 +821,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr',	'Jon',	'Kerridge'),
       Address('Fun',	'Glasgow',	'BS11 3AD'),
+      ContactDetails('01411112223', NestedMobiles('07852468502', '')),
       'NI870',
       '867',
-      '01411112223',
-      '07852468502', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -852,11 +844,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mrs',	'Karen',	'Hatton'),
       Address('Calder',	'Livingston',	'SM66 6SD'),
+      ContactDetails('01506115523', NestedMobiles('07812748900', '')),
       'NI804',
       '190',
-      '01506115523',
-      '07812748900', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -877,11 +867,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mrs',	'Shanye',	'West'),
       Address('Swag',	'Edinburgh',	'XO32 9GG'),
+      ContactDetails('01315245223', NestedMobiles('07888098900', '')),
       'NI881',
       '300',
-      '01315245223',
-      '07888098900', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -902,11 +890,9 @@ INSERT INTO employee VALUES
 (
       FullName('Miss',	'Lzzy',	'Hale'),
       Address('Storm',	'Dundee',	'HA13 5TO'),
+      ContactDetails('01611971223', NestedMobiles('07812095901', '')),
       'NI274',
       '998',
-      '01611971223',
-      '07812095901', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -927,11 +913,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr', 'Sean',	'Baxter'),
       Address('McDonald',	'Perth',	'EH32 7SB'),
+      ContactDetails('01411582582', NestedMobiles('07582585858', '07626582626')),
       'NI224',
       '582',
-      '01411582582',
-      '07582585858', 
-      '07626582626',
       (
             SELECT REF(e)
             FROM employee e
@@ -952,11 +936,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr', 'Mark', 'Slack'),
       Address('Old', 'Edinburgh', 'EH94BB'),
+      ContactDetails('01312102211', NestedMobiles('', '')),
       'NI120',
       '108',
-      '01312102211',
-      '', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -977,11 +959,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr', 'Jack', 'Smith'),
       Address('Dart', 'Edinburgh', 'EH16EA'),
+      ContactDetails('01311112223', NestedMobiles('07812098900', '')),
       'NI810',
       '804',
-      '01311112223',
-      '07812098900', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1002,11 +982,9 @@ INSERT INTO employee VALUES
 (
       FullName('Miss',	'Sarah',	'Barbour'),
       Address('Harrysmuir',	'Bathgate',	'BG02 9AV'),
+      ContactDetails('01572030303', NestedMobiles('07898222222', '')),
       'NI360',
       '291',
-      '01572030303',
-      '07898222222', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1027,11 +1005,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr',	'David',	'Gray'),
       Address('Easter',	'Edinburgh',	'EH32 6TH'),
+      ContactDetails('01411101010', NestedMobiles('07732076232', '')),
       'NI777',
       '352',
-      '01411101010',
-      '07732076232', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1052,11 +1028,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mrs',	'Lauren',	'King'),
       Address('Mansefield',	'Livingston',	'EH53 0DE'),
+      ContactDetails('01506515151', NestedMobiles('07707515151', '')),
       'NI015',
       '451',
-      '01506515151',
-      '07707515151', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1077,11 +1051,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mrs',	'Eleanor',	'Kay'),
       Address('Main',	'Livingston',	'EH69 2DB'),
+      ContactDetails('01506443322', NestedMobiles('07897261900', '')),
       'NI180',
       '550',
-      '01506443322',
-      '07897261900', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1102,11 +1074,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr',	'Matt',	'Shadows'),
       Address('Bat',	'Inverness',	'IV39 2EV'),
+      ContactDetails('01911118223', NestedMobiles('07773063018', '')),
       'NI900',
       '290',
-      '01911118223',
-      '07773063018', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1127,11 +1097,9 @@ INSERT INTO employee VALUES
 (
       FullName('Miss',	'Ruth',	'Davidson'),
       Address('Lemon',	'Wishaw',	'LI42 4WM'),
+      ContactDetails('01311112229', NestedMobiles('07812098927', '')),
       'NI765',
       '118',
-      '01311112229',
-      '07812098927', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1152,11 +1120,9 @@ INSERT INTO employee VALUES
 (
       FullName('Mr',	'Yer',	'Da'),
       Address('Patter',	'Perth',	'YD12 3PP'),
+      ContactDetails('01711150223', NestedMobiles('07812069904', '')),
       'NI753',
       '777',
-      '01711150223',
-      '07812069904', 
-      '',
       (
             SELECT REF(e)
             FROM employee e
@@ -1178,23 +1144,19 @@ INSERT INTO customer VALUES
 (
       FullName('Mr', 'Jack', 'Smith'),
       Address('Adam', 'Edinburgh', 'EH1 6EA'),
+      ContactDetails('01311112223', NestedMobiles('0781209890', '0770234567')),     
       'NI810',
-      '1002',
-      '01311112223',
-      '0781209890', 
-      '0770234567'
-  );
+      '1002'
+);
 /
 
 INSERT INTO customer VALUES
 (
       FullName('Ms', 'Anna', 'Smith'),
       Address('Adam', 'Edinburgh', 'EH1 6EA'),
+      ContactDetails('01311112223', NestedMobiles('0770111222', '')),     
       'NI310',
-      '1003',
-      '01311112223',
-      '0770111222',
-      ''
+      '1003'
 );
 /
 
@@ -1202,11 +1164,9 @@ INSERT INTO customer VALUES
 (
       FullName('Mr', 'Liam', 'Bain'),
 	    Address('New', 'Edinburgh', 'EH2 8XN'),
+      ContactDetails('01314425567', NestedMobiles('', '')),     
       'NI034',
-      '1098',
-      '01314425567',
-      '',
-      ''
+      '1098'
 );
 /
 
@@ -1214,11 +1174,9 @@ INSERT INTO customer VALUES
 (
       FullName('Mr', 'Ronnie', 'Pickering'),
       Address('Roadrage', 'Edinburgh', 'ED11 6RR'),
+      ContactDetails('01314513204', NestedMobiles('0781205134', '')),     
       'NI235',
-      '1013',
-      '01314513204', 
-      '0781205134',
-      ''
+      '1013'
 );	
 /
 
@@ -1226,11 +1184,9 @@ INSERT INTO customer VALUES
 (			
       FullName('Mr',	'Judd',	'Trump'),
       Address('Table',	'Edinburgh',	'EH14 7JT'),
+      ContactDetails('01311471471', NestedMobiles('07702011616', '')),     
       'NI741',
-      '0147',
-      '01311471471', 
-      '07702011616',
-      ''
+      '0147'
 );	
 /
 
@@ -1238,11 +1194,9 @@ INSERT INTO customer VALUES
 (	 				
       FullName('Miss',	'Amy',	'Thomson'),
       Address('Dug',	'Edinburgh',	'EH21 0EW'),
+      ContactDetails('01310210210', NestedMobiles('07701656716', '')),     
       'NI210',
-      '0210',
-      '01310210210', 
-      '07701656716',
-      ''
+      '0210'
 );	
 /
 
@@ -1250,11 +1204,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mrs',	'Avril',	'Lavigne'),
       Address('Skater',	'Glasgow',	'HH23 3YY'),
+      ContactDetails('01410838383', NestedMobiles('07896101010', '07090909078')),     
       'NI838',
-      '6070',
-      '01410838383', 
-      '07896101010',
-      '07090909078'
+      '6070'
 );	
 /
 
@@ -1262,11 +1214,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'Derek',	'Riordan'),
       Address('Deek',	'Edinburgh',	'DO07 4TH'),
+      ContactDetails('01317776262', NestedMobiles('07777777777', '')),     
       'NI033',
-      '6207',
-      '01317776262', 
-      '07777777777',
-      ''
+      '6207'
 );	
 /
 
@@ -1274,11 +1224,9 @@ INSERT INTO customer VALUES
 (					
       FullName('Mr',	'Ronnie',	'OSullivan'),
       Address('Century',	'Edinburgh',	'EH14 7RO'),
+      ContactDetails('01310100147', NestedMobiles('07147147147', '')),     
       'NI147',
-      '1147',
-      '01310100147', 
-      '07147147147',
-      ''
+      '1147'
 );	
 /
 
@@ -1286,11 +1234,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Miss',	'Ava',	'Barbour'),
       Address('Station',	'Bathgate',	'BG03 4VA'),
+      ContactDetails('01516884932', NestedMobiles('', '')),     
       'NI434',
-      '3020',
-      '01516884932', 
-      '',
-      ''
+      '3020'
 );	
 /
 
@@ -1298,11 +1244,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Miss',	'Joanna',	'Robertson'),
       Address('Maxi',	'Livingston',	'EH53 9OT'),
+      ContactDetails('01506884072', NestedMobiles('07702011616', '')),     
       'NI910',
-      '0910',
-      '01506884072', 
-      '07702011616',
-      ''
+      '0910'
 );	
 /
 
@@ -1310,11 +1254,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mrs',	'Helen',	'Wilson'),
       Address('Nurse',	'Aberdeen',	'AB53 7HB'),
+      ContactDetails('01904886343', NestedMobiles('07762999999', '07911911911')),     
       'NI333',
-      '1110',
-      '01904886343', 
-      '07762999999',
-      '07911911911'
+      '1110'
 );	
 /
 
@@ -1322,11 +1264,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'Mixu',	'Paatelainen'),
       Address('Traing',	'Dundee',	'WT10 0FP'),
+      ContactDetails('01880626266', NestedMobiles('07626200762', '')),     
       'NI062',
-      '6262',
-      '01880626266', 
-      '07626200762',
-      ''
+      '6262'
 );	
 /
 
@@ -1334,11 +1274,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Miss',	'Mei',	'Ling'),
       Address('Metal',	'Inverness',	'IV04 4MG'),
+      ContactDetails('09901010101', NestedMobiles('07701212121', '')),     
       'NI111',
-      '1000',
-      '09901010101', 
-      '07701212121',
-      ''
+      '1000'
 );	
 /
 
@@ -1346,11 +1284,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'Dennis',	'Bergkamp'),
       Address('Spin',	'Motherwell',	'MW08 6KB'),
+      ContactDetails('01566060606', NestedMobiles('07789721567', '')),     
       'NI044',
-      '3040',
-      '01566060606', 
-      '07789721567',
-      ''
+      '3040'
 );	
 /
 
@@ -1358,11 +1294,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'John', 'McGinn'),
       Address('Super',	'Paisley',	'WG30 3JM'),
+      ContactDetails('01333777864', NestedMobiles('07792303030', '')),     
       'NI579',
-      '3030',
-      '01333777864', 
-      '07792303030',
-      ''
+      '3030'
 );	
 /
 
@@ -1370,11 +1304,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'Thierry',	'Henry'),
       Address('Boss',	'Glenrothes',	'GR14 1TH'),
+      ContactDetails('08655876255', NestedMobiles('07703040304', '07777343434')),     
       'NI818',
-      '3004',
-      '08655876255', 
-      '07703040304',
-      '07777343434'
+      '3004'
 );	
 /
 
@@ -1382,11 +1314,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Mr',	'Franck',	'Sauzee'),
       Address('God',	'Perth',	'LG05 1FS'),
+      ContactDetails('01756334443', NestedMobiles('07705776622', '')),     
       'NI136',
-      '1312',
-      '01756334443', 
-      '07705776622',
-      ''
+      '1312'
 );	
 /
 
@@ -1394,11 +1324,9 @@ INSERT INTO customer VALUES
 (						
       FullName('Ms',	'Blair',	'Waldorf'),
       Address('Queen',	'Kilmarnock',	'QB01 1WD'),
+      ContactDetails('01234567890', NestedMobiles('07701010101', '07101010101')),     
       'NI001',
-      '0001',
-      '01234567890', 
-      '07701010101',
-      '07101010101'
+      '0001'
 );	
 /
 
@@ -1406,11 +1334,9 @@ INSERT INTO customer VALUES
 (			
       FullName('Mr',	'David',	'Gray'),
       Address('Easter',	'Edinburgh',	'EH32 6TH'),
+      ContactDetails('01411101010', NestedMobiles('07732076232', '')),     
       'NI777',
-      '7077',
-      '01411101010', 
-      '07732076232',
-      ''
+      '7077'
 );	
 /
 
@@ -1418,11 +1344,9 @@ INSERT INTO customer VALUES
 (					
       FullName('Mr',	'Neil',	'Robertson'),
       Address('Skippy',	'Dunfermline',	'DF12 3AU'),
+      ContactDetails('01237889256', NestedMobiles('07799778855', '')),     
       'NI080',
-      '8888',
-      '01237889256', 
-      '07799778855',
-      ''
+      '8888'
 );	
 /
 
